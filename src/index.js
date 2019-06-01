@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Location from './WeatherLocation';
 import Temp from  './Temperature';
+import Desc from './WeatherDesc';
 import axios from 'axios';
 
 
@@ -48,6 +49,13 @@ class App extends React.Component {
             <Temp temp={temp} icon={icon}/>
         )
     }
+    renderDesc(weather) {
+        const desc = weather.weather[0].description;
+        console.log(desc);
+        return (
+            <Desc desc={desc}/>
+        )
+    }
 
     render() {
         const weather = this.state.weather;
@@ -55,10 +63,12 @@ class App extends React.Component {
         if(weather !== undefined) {
             const location = this.renderLocation(weather);
             const temp = this.renderTemp(weather);
+            const desc = this.renderDesc(weather);
             return (
                 <>
                     {location}
                     {temp}
+                    {desc}
                 </>
             );
         }
