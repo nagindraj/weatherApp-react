@@ -33,7 +33,7 @@ const MainTB = (props) => {
                     </tr>
                     <tr>
                     <td>Geo coords</td>
-                    <td>{props.coordlon} {props.coordlat}</td>
+                    <td>[{props.coordlon} ,{props.coordlat}]</td>
                 </tr>
                 </tbody>
             </table>
