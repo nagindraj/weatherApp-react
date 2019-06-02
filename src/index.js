@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import Location from './WeatherLocation';
 import Temp from  './Temperature';
 import Desc from './WeatherDesc';
+import MainTB from './MainTable';
+import indexcss from  './index.css'
 import axios from 'axios';
+
 
 
 class App extends React.Component {
@@ -32,6 +35,22 @@ class App extends React.Component {
         });
     }
 
+    renderMainTB(weather){
+        const WindSpeed = weather.wind.speed;
+        const Pressure = weather.main.pressure;
+        const Humidity = weather.main.humidity;
+        const Sunrise = weather.sys.sunrise;
+        const Sunset = weather.sys.sunset;
+        const CoordLat = weather.coord.lat;
+        const CoordLon = weather.coord.lon;
+        console.log(CoordLat);
+        return (
+            <div>
+                <MainTB windSpeed={WindSpeed} pressure ={Pressure} humidity = {Humidity} sunrise ={Sunrise} sunset ={Sunset} coordlat ={CoordLat} coordlon ={CoordLon}/>
+            </div>
+        );
+    }
+
     renderLocation(weather) {
         const city = weather.name;
         const country = weather.sys.country;
@@ -41,7 +60,7 @@ class App extends React.Component {
             </div>
         );
     }
-
+   
     renderTemp(weather) {
         const temp = weather.main.temp;
         const icon = weather.weather[0].icon;
@@ -64,11 +83,14 @@ class App extends React.Component {
             const location = this.renderLocation(weather);
             const temp = this.renderTemp(weather);
             const desc = this.renderDesc(weather);
+            const mainWeatherTable = this.renderMainTB(weather);
             return (
                 <>
+                    <h3 className="headercolor">Current weather and forecasts in your city</h3>
                     {location}
                     {temp}
                     {desc}
+                    {mainWeatherTable}
                 </>
             );
         }

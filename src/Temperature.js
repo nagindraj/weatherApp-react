@@ -9,7 +9,7 @@ const Temp = (props) => {
     return ( 
         <div className="temp">
             <img className="img" src={iconUrl} alt=""></img>
-            <span>{roundtemp}</span>
+            <span>{roundtemp}°C</span>
         </div>   
     );
 } 
